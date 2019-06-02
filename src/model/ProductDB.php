@@ -20,7 +20,14 @@ class ProductDB
         $stmt->execute();
         $result = $stmt->fetchAll();
 
-        return $result;
+        $arr = [];
+
+        foreach ($result as $item) {
+            $product = new Product($item['name'], $item['image'], $item['price'], $item['price_old']);
+            array_push($arr, $product);
+        }
+
+        return $arr;
 
     }
 
